@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"context"
@@ -54,7 +54,7 @@ func (s *TrackHunterServer) AddFingerprint(ctx context.Context, req *pb.AddFinge
 	s.tracks[id] = req.Metadata
 
 	return &pb.AddFingerprintResponse{
-		Sucess:  true,
+		Success: true,
 		Message: "Fingerprint stored successfully",
 	}, nil
 }

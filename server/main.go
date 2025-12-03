@@ -5,7 +5,6 @@ import (
 	"net"
 
 	pb "github.com/PierreDougnac/TrackHunter/proto"
-	srv "github.com/PierreDougnac/TrackHunter/server"
 
 	"google.golang.org/grpc"
 )
