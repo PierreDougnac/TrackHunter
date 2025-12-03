@@ -53,10 +53,37 @@ message GetTrackInfoResponse {
   Track track = 1;
 }
 
+// List all fingerprints
+message ListFingerprintsRequest {}
+
+message ListFingerprintsResponse {
+  repeated Track tracks = 1;
+}
+
+// Get a single track by ID
+message GetFingerprintRequest {
+  string id = 1;
+}
+
+message GetFingerprintResponse {
+  Track track = 1;
+}
+
+// Delete a track by ID
+message DeleteFingerprintRequest {
+  string id = 1;
+}
+
+message DeleteFingerprintResponse {
+  bool success = 1;
+  string message = 2;
+}
+
 // === Service ===
 
 service TrackHunterService {
-  rpc IdentifySong(IdentifySongRequest) returns (IdentifySongResponse);
-  rpc AddFingerprint(AddFingerprintRequest) returns (AddFingerprintResponse);
-  rpc GetTrackInfo(GetTrackInfoRequest) returns (GetTrackInfoResponse);
+    rpc AddFingerprint(AddFingerprintRequest) returns (AddFingerprintResponse);
+    rpc ListFingerprints(ListFingerprintsRequest) returns (ListFingerprintsResponse);
+    rpc GetFingerprint(GetFingerprintRequest) returns (GetFingerprintResponse);
+    rpc DeleteFingerprint(DeleteFingerprintRequest) returns (DeleteFingerprintResponse);
 }

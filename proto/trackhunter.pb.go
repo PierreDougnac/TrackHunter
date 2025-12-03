@@ -449,6 +449,273 @@ func (x *GetTrackInfoResponse) GetTrack() *Track {
 	return nil
 }
 
+// List all fingerprints
+type ListFingerprintsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListFingerprintsRequest) Reset() {
+	*x = ListFingerprintsRequest{}
+	mi := &file_proto_trackhunter_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListFingerprintsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListFingerprintsRequest) ProtoMessage() {}
+
+func (x *ListFingerprintsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_trackhunter_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListFingerprintsRequest.ProtoReflect.Descriptor instead.
+func (*ListFingerprintsRequest) Descriptor() ([]byte, []int) {
+	return file_proto_trackhunter_proto_rawDescGZIP(), []int{8}
+}
+
+type ListFingerprintsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Tracks        []*Track               `protobuf:"bytes,1,rep,name=tracks,proto3" json:"tracks,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListFingerprintsResponse) Reset() {
+	*x = ListFingerprintsResponse{}
+	mi := &file_proto_trackhunter_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListFingerprintsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListFingerprintsResponse) ProtoMessage() {}
+
+func (x *ListFingerprintsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_trackhunter_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListFingerprintsResponse.ProtoReflect.Descriptor instead.
+func (*ListFingerprintsResponse) Descriptor() ([]byte, []int) {
+	return file_proto_trackhunter_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListFingerprintsResponse) GetTracks() []*Track {
+	if x != nil {
+		return x.Tracks
+	}
+	return nil
+}
+
+// Get a single track by ID
+type GetFingerprintRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFingerprintRequest) Reset() {
+	*x = GetFingerprintRequest{}
+	mi := &file_proto_trackhunter_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFingerprintRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFingerprintRequest) ProtoMessage() {}
+
+func (x *GetFingerprintRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_trackhunter_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFingerprintRequest.ProtoReflect.Descriptor instead.
+func (*GetFingerprintRequest) Descriptor() ([]byte, []int) {
+	return file_proto_trackhunter_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetFingerprintRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetFingerprintResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Track         *Track                 `protobuf:"bytes,1,opt,name=track,proto3" json:"track,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFingerprintResponse) Reset() {
+	*x = GetFingerprintResponse{}
+	mi := &file_proto_trackhunter_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFingerprintResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFingerprintResponse) ProtoMessage() {}
+
+func (x *GetFingerprintResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_trackhunter_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFingerprintResponse.ProtoReflect.Descriptor instead.
+func (*GetFingerprintResponse) Descriptor() ([]byte, []int) {
+	return file_proto_trackhunter_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetFingerprintResponse) GetTrack() *Track {
+	if x != nil {
+		return x.Track
+	}
+	return nil
+}
+
+// Delete a track by ID
+type DeleteFingerprintRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteFingerprintRequest) Reset() {
+	*x = DeleteFingerprintRequest{}
+	mi := &file_proto_trackhunter_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteFingerprintRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteFingerprintRequest) ProtoMessage() {}
+
+func (x *DeleteFingerprintRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_trackhunter_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteFingerprintRequest.ProtoReflect.Descriptor instead.
+func (*DeleteFingerprintRequest) Descriptor() ([]byte, []int) {
+	return file_proto_trackhunter_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *DeleteFingerprintRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteFingerprintResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteFingerprintResponse) Reset() {
+	*x = DeleteFingerprintResponse{}
+	mi := &file_proto_trackhunter_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteFingerprintResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteFingerprintResponse) ProtoMessage() {}
+
+func (x *DeleteFingerprintResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_trackhunter_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteFingerprintResponse.ProtoReflect.Descriptor instead.
+func (*DeleteFingerprintResponse) Descriptor() ([]byte, []int) {
+	return file_proto_trackhunter_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *DeleteFingerprintResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *DeleteFingerprintResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_proto_trackhunter_proto protoreflect.FileDescriptor
 
 const file_proto_trackhunter_proto_rawDesc = "" +
@@ -482,11 +749,24 @@ const file_proto_trackhunter_proto_rawDesc = "" +
 	"\x13GetTrackInfoRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"@\n" +
 	"\x14GetTrackInfoResponse\x12(\n" +
-	"\x05track\x18\x01 \x01(\v2\x12.trackhunter.TrackR\x05track2\x99\x02\n" +
-	"\x12TrackHunterService\x12S\n" +
-	"\fIdentifySong\x12 .trackhunter.IdentifySongRequest\x1a!.trackhunter.IdentifySongResponse\x12Y\n" +
-	"\x0eAddFingerprint\x12\".trackhunter.AddFingerprintRequest\x1a#.trackhunter.AddFingerprintResponse\x12S\n" +
-	"\fGetTrackInfo\x12 .trackhunter.GetTrackInfoRequest\x1a!.trackhunter.GetTrackInfoResponseB\x0fZ\r./proto;protob\x06proto3"
+	"\x05track\x18\x01 \x01(\v2\x12.trackhunter.TrackR\x05track\"\x19\n" +
+	"\x17ListFingerprintsRequest\"F\n" +
+	"\x18ListFingerprintsResponse\x12*\n" +
+	"\x06tracks\x18\x01 \x03(\v2\x12.trackhunter.TrackR\x06tracks\"'\n" +
+	"\x15GetFingerprintRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"B\n" +
+	"\x16GetFingerprintResponse\x12(\n" +
+	"\x05track\x18\x01 \x01(\v2\x12.trackhunter.TrackR\x05track\"*\n" +
+	"\x18DeleteFingerprintRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"O\n" +
+	"\x19DeleteFingerprintResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\x8f\x03\n" +
+	"\x12TrackHunterService\x12Y\n" +
+	"\x0eAddFingerprint\x12\".trackhunter.AddFingerprintRequest\x1a#.trackhunter.AddFingerprintResponse\x12_\n" +
+	"\x10ListFingerprints\x12$.trackhunter.ListFingerprintsRequest\x1a%.trackhunter.ListFingerprintsResponse\x12Y\n" +
+	"\x0eGetFingerprint\x12\".trackhunter.GetFingerprintRequest\x1a#.trackhunter.GetFingerprintResponse\x12b\n" +
+	"\x11DeleteFingerprint\x12%.trackhunter.DeleteFingerprintRequest\x1a&.trackhunter.DeleteFingerprintResponseB\x0fZ\r./proto;protob\x06proto3"
 
 var (
 	file_proto_trackhunter_proto_rawDescOnce sync.Once
@@ -500,34 +780,44 @@ func file_proto_trackhunter_proto_rawDescGZIP() []byte {
 	return file_proto_trackhunter_proto_rawDescData
 }
 
-var file_proto_trackhunter_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_proto_trackhunter_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_proto_trackhunter_proto_goTypes = []any{
-	(*AudioChunk)(nil),             // 0: trackhunter.AudioChunk
-	(*Track)(nil),                  // 1: trackhunter.Track
-	(*IdentifySongRequest)(nil),    // 2: trackhunter.IdentifySongRequest
-	(*IdentifySongResponse)(nil),   // 3: trackhunter.IdentifySongResponse
-	(*AddFingerprintRequest)(nil),  // 4: trackhunter.AddFingerprintRequest
-	(*AddFingerprintResponse)(nil), // 5: trackhunter.AddFingerprintResponse
-	(*GetTrackInfoRequest)(nil),    // 6: trackhunter.GetTrackInfoRequest
-	(*GetTrackInfoResponse)(nil),   // 7: trackhunter.GetTrackInfoResponse
+	(*AudioChunk)(nil),                // 0: trackhunter.AudioChunk
+	(*Track)(nil),                     // 1: trackhunter.Track
+	(*IdentifySongRequest)(nil),       // 2: trackhunter.IdentifySongRequest
+	(*IdentifySongResponse)(nil),      // 3: trackhunter.IdentifySongResponse
+	(*AddFingerprintRequest)(nil),     // 4: trackhunter.AddFingerprintRequest
+	(*AddFingerprintResponse)(nil),    // 5: trackhunter.AddFingerprintResponse
+	(*GetTrackInfoRequest)(nil),       // 6: trackhunter.GetTrackInfoRequest
+	(*GetTrackInfoResponse)(nil),      // 7: trackhunter.GetTrackInfoResponse
+	(*ListFingerprintsRequest)(nil),   // 8: trackhunter.ListFingerprintsRequest
+	(*ListFingerprintsResponse)(nil),  // 9: trackhunter.ListFingerprintsResponse
+	(*GetFingerprintRequest)(nil),     // 10: trackhunter.GetFingerprintRequest
+	(*GetFingerprintResponse)(nil),    // 11: trackhunter.GetFingerprintResponse
+	(*DeleteFingerprintRequest)(nil),  // 12: trackhunter.DeleteFingerprintRequest
+	(*DeleteFingerprintResponse)(nil), // 13: trackhunter.DeleteFingerprintResponse
 }
 var file_proto_trackhunter_proto_depIdxs = []int32{
-	0, // 0: trackhunter.IdentifySongRequest.audio:type_name -> trackhunter.AudioChunk
-	1, // 1: trackhunter.IdentifySongResponse.track:type_name -> trackhunter.Track
-	1, // 2: trackhunter.AddFingerprintRequest.metadata:type_name -> trackhunter.Track
-	0, // 3: trackhunter.AddFingerprintRequest.audio:type_name -> trackhunter.AudioChunk
-	1, // 4: trackhunter.GetTrackInfoResponse.track:type_name -> trackhunter.Track
-	2, // 5: trackhunter.TrackHunterService.IdentifySong:input_type -> trackhunter.IdentifySongRequest
-	4, // 6: trackhunter.TrackHunterService.AddFingerprint:input_type -> trackhunter.AddFingerprintRequest
-	6, // 7: trackhunter.TrackHunterService.GetTrackInfo:input_type -> trackhunter.GetTrackInfoRequest
-	3, // 8: trackhunter.TrackHunterService.IdentifySong:output_type -> trackhunter.IdentifySongResponse
-	5, // 9: trackhunter.TrackHunterService.AddFingerprint:output_type -> trackhunter.AddFingerprintResponse
-	7, // 10: trackhunter.TrackHunterService.GetTrackInfo:output_type -> trackhunter.GetTrackInfoResponse
-	8, // [8:11] is the sub-list for method output_type
-	5, // [5:8] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	0,  // 0: trackhunter.IdentifySongRequest.audio:type_name -> trackhunter.AudioChunk
+	1,  // 1: trackhunter.IdentifySongResponse.track:type_name -> trackhunter.Track
+	1,  // 2: trackhunter.AddFingerprintRequest.metadata:type_name -> trackhunter.Track
+	0,  // 3: trackhunter.AddFingerprintRequest.audio:type_name -> trackhunter.AudioChunk
+	1,  // 4: trackhunter.GetTrackInfoResponse.track:type_name -> trackhunter.Track
+	1,  // 5: trackhunter.ListFingerprintsResponse.tracks:type_name -> trackhunter.Track
+	1,  // 6: trackhunter.GetFingerprintResponse.track:type_name -> trackhunter.Track
+	4,  // 7: trackhunter.TrackHunterService.AddFingerprint:input_type -> trackhunter.AddFingerprintRequest
+	8,  // 8: trackhunter.TrackHunterService.ListFingerprints:input_type -> trackhunter.ListFingerprintsRequest
+	10, // 9: trackhunter.TrackHunterService.GetFingerprint:input_type -> trackhunter.GetFingerprintRequest
+	12, // 10: trackhunter.TrackHunterService.DeleteFingerprint:input_type -> trackhunter.DeleteFingerprintRequest
+	5,  // 11: trackhunter.TrackHunterService.AddFingerprint:output_type -> trackhunter.AddFingerprintResponse
+	9,  // 12: trackhunter.TrackHunterService.ListFingerprints:output_type -> trackhunter.ListFingerprintsResponse
+	11, // 13: trackhunter.TrackHunterService.GetFingerprint:output_type -> trackhunter.GetFingerprintResponse
+	13, // 14: trackhunter.TrackHunterService.DeleteFingerprint:output_type -> trackhunter.DeleteFingerprintResponse
+	11, // [11:15] is the sub-list for method output_type
+	7,  // [7:11] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_proto_trackhunter_proto_init() }
@@ -541,7 +831,7 @@ func file_proto_trackhunter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_trackhunter_proto_rawDesc), len(file_proto_trackhunter_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

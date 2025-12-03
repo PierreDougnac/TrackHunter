@@ -19,18 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TrackHunterService_IdentifySong_FullMethodName   = "/trackhunter.TrackHunterService/IdentifySong"
-	TrackHunterService_AddFingerprint_FullMethodName = "/trackhunter.TrackHunterService/AddFingerprint"
-	TrackHunterService_GetTrackInfo_FullMethodName   = "/trackhunter.TrackHunterService/GetTrackInfo"
+	TrackHunterService_AddFingerprint_FullMethodName    = "/trackhunter.TrackHunterService/AddFingerprint"
+	TrackHunterService_ListFingerprints_FullMethodName  = "/trackhunter.TrackHunterService/ListFingerprints"
+	TrackHunterService_GetFingerprint_FullMethodName    = "/trackhunter.TrackHunterService/GetFingerprint"
+	TrackHunterService_DeleteFingerprint_FullMethodName = "/trackhunter.TrackHunterService/DeleteFingerprint"
 )
 
 // TrackHunterServiceClient is the client API for TrackHunterService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TrackHunterServiceClient interface {
-	IdentifySong(ctx context.Context, in *IdentifySongRequest, opts ...grpc.CallOption) (*IdentifySongResponse, error)
 	AddFingerprint(ctx context.Context, in *AddFingerprintRequest, opts ...grpc.CallOption) (*AddFingerprintResponse, error)
-	GetTrackInfo(ctx context.Context, in *GetTrackInfoRequest, opts ...grpc.CallOption) (*GetTrackInfoResponse, error)
+	ListFingerprints(ctx context.Context, in *ListFingerprintsRequest, opts ...grpc.CallOption) (*ListFingerprintsResponse, error)
+	GetFingerprint(ctx context.Context, in *GetFingerprintRequest, opts ...grpc.CallOption) (*GetFingerprintResponse, error)
+	DeleteFingerprint(ctx context.Context, in *DeleteFingerprintRequest, opts ...grpc.CallOption) (*DeleteFingerprintResponse, error)
 }
 
 type trackHunterServiceClient struct {
@@ -39,16 +41,6 @@ type trackHunterServiceClient struct {
 
 func NewTrackHunterServiceClient(cc grpc.ClientConnInterface) TrackHunterServiceClient {
 	return &trackHunterServiceClient{cc}
-}
-
-func (c *trackHunterServiceClient) IdentifySong(ctx context.Context, in *IdentifySongRequest, opts ...grpc.CallOption) (*IdentifySongResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(IdentifySongResponse)
-	err := c.cc.Invoke(ctx, TrackHunterService_IdentifySong_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *trackHunterServiceClient) AddFingerprint(ctx context.Context, in *AddFingerprintRequest, opts ...grpc.CallOption) (*AddFingerprintResponse, error) {
@@ -61,10 +53,30 @@ func (c *trackHunterServiceClient) AddFingerprint(ctx context.Context, in *AddFi
 	return out, nil
 }
 
-func (c *trackHunterServiceClient) GetTrackInfo(ctx context.Context, in *GetTrackInfoRequest, opts ...grpc.CallOption) (*GetTrackInfoResponse, error) {
+func (c *trackHunterServiceClient) ListFingerprints(ctx context.Context, in *ListFingerprintsRequest, opts ...grpc.CallOption) (*ListFingerprintsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetTrackInfoResponse)
-	err := c.cc.Invoke(ctx, TrackHunterService_GetTrackInfo_FullMethodName, in, out, cOpts...)
+	out := new(ListFingerprintsResponse)
+	err := c.cc.Invoke(ctx, TrackHunterService_ListFingerprints_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trackHunterServiceClient) GetFingerprint(ctx context.Context, in *GetFingerprintRequest, opts ...grpc.CallOption) (*GetFingerprintResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFingerprintResponse)
+	err := c.cc.Invoke(ctx, TrackHunterService_GetFingerprint_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *trackHunterServiceClient) DeleteFingerprint(ctx context.Context, in *DeleteFingerprintRequest, opts ...grpc.CallOption) (*DeleteFingerprintResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteFingerprintResponse)
+	err := c.cc.Invoke(ctx, TrackHunterService_DeleteFingerprint_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,9 +87,10 @@ func (c *trackHunterServiceClient) GetTrackInfo(ctx context.Context, in *GetTrac
 // All implementations must embed UnimplementedTrackHunterServiceServer
 // for forward compatibility.
 type TrackHunterServiceServer interface {
-	IdentifySong(context.Context, *IdentifySongRequest) (*IdentifySongResponse, error)
 	AddFingerprint(context.Context, *AddFingerprintRequest) (*AddFingerprintResponse, error)
-	GetTrackInfo(context.Context, *GetTrackInfoRequest) (*GetTrackInfoResponse, error)
+	ListFingerprints(context.Context, *ListFingerprintsRequest) (*ListFingerprintsResponse, error)
+	GetFingerprint(context.Context, *GetFingerprintRequest) (*GetFingerprintResponse, error)
+	DeleteFingerprint(context.Context, *DeleteFingerprintRequest) (*DeleteFingerprintResponse, error)
 	mustEmbedUnimplementedTrackHunterServiceServer()
 }
 
@@ -88,14 +101,17 @@ type TrackHunterServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTrackHunterServiceServer struct{}
 
-func (UnimplementedTrackHunterServiceServer) IdentifySong(context.Context, *IdentifySongRequest) (*IdentifySongResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IdentifySong not implemented")
-}
 func (UnimplementedTrackHunterServiceServer) AddFingerprint(context.Context, *AddFingerprintRequest) (*AddFingerprintResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddFingerprint not implemented")
 }
-func (UnimplementedTrackHunterServiceServer) GetTrackInfo(context.Context, *GetTrackInfoRequest) (*GetTrackInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTrackInfo not implemented")
+func (UnimplementedTrackHunterServiceServer) ListFingerprints(context.Context, *ListFingerprintsRequest) (*ListFingerprintsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFingerprints not implemented")
+}
+func (UnimplementedTrackHunterServiceServer) GetFingerprint(context.Context, *GetFingerprintRequest) (*GetFingerprintResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFingerprint not implemented")
+}
+func (UnimplementedTrackHunterServiceServer) DeleteFingerprint(context.Context, *DeleteFingerprintRequest) (*DeleteFingerprintResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteFingerprint not implemented")
 }
 func (UnimplementedTrackHunterServiceServer) mustEmbedUnimplementedTrackHunterServiceServer() {}
 func (UnimplementedTrackHunterServiceServer) testEmbeddedByValue()                            {}
@@ -118,24 +134,6 @@ func RegisterTrackHunterServiceServer(s grpc.ServiceRegistrar, srv TrackHunterSe
 	s.RegisterService(&TrackHunterService_ServiceDesc, srv)
 }
 
-func _TrackHunterService_IdentifySong_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdentifySongRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TrackHunterServiceServer).IdentifySong(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TrackHunterService_IdentifySong_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrackHunterServiceServer).IdentifySong(ctx, req.(*IdentifySongRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _TrackHunterService_AddFingerprint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddFingerprintRequest)
 	if err := dec(in); err != nil {
@@ -154,20 +152,56 @@ func _TrackHunterService_AddFingerprint_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TrackHunterService_GetTrackInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTrackInfoRequest)
+func _TrackHunterService_ListFingerprints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListFingerprintsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TrackHunterServiceServer).GetTrackInfo(ctx, in)
+		return srv.(TrackHunterServiceServer).ListFingerprints(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TrackHunterService_GetTrackInfo_FullMethodName,
+		FullMethod: TrackHunterService_ListFingerprints_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrackHunterServiceServer).GetTrackInfo(ctx, req.(*GetTrackInfoRequest))
+		return srv.(TrackHunterServiceServer).ListFingerprints(ctx, req.(*ListFingerprintsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrackHunterService_GetFingerprint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFingerprintRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrackHunterServiceServer).GetFingerprint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrackHunterService_GetFingerprint_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrackHunterServiceServer).GetFingerprint(ctx, req.(*GetFingerprintRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TrackHunterService_DeleteFingerprint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteFingerprintRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrackHunterServiceServer).DeleteFingerprint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TrackHunterService_DeleteFingerprint_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrackHunterServiceServer).DeleteFingerprint(ctx, req.(*DeleteFingerprintRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -180,16 +214,20 @@ var TrackHunterService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TrackHunterServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "IdentifySong",
-			Handler:    _TrackHunterService_IdentifySong_Handler,
-		},
-		{
 			MethodName: "AddFingerprint",
 			Handler:    _TrackHunterService_AddFingerprint_Handler,
 		},
 		{
-			MethodName: "GetTrackInfo",
-			Handler:    _TrackHunterService_GetTrackInfo_Handler,
+			MethodName: "ListFingerprints",
+			Handler:    _TrackHunterService_ListFingerprints_Handler,
+		},
+		{
+			MethodName: "GetFingerprint",
+			Handler:    _TrackHunterService_GetFingerprint_Handler,
+		},
+		{
+			MethodName: "DeleteFingerprint",
+			Handler:    _TrackHunterService_DeleteFingerprint_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

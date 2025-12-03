@@ -16,7 +16,7 @@ func main() {
 	}
 
 	server := grpc.NewServer()
-	pb.RegisterTrackHunterServiceServer(server, srv.NewTrackHunterServer())
+	pb.RegisterTrackHunterServiceServer(server, NewTrackHunterServer())
 
 	log.Println("TrackHunter gRPC server running on :50052")
 
