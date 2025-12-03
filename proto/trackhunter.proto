@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package trackhunter;
+
+option go_package = "./proto;proto";
+
+// === Models ===
+
+message AudioChunk {
+  bytes data = 1;               // Raw audio data (WAV/PCM/MP3/etc.)
+  string encoding = 2;          // "wav", "pcm", "mp3"
+  uint32 sample_rate = 3;       // e.g. 44100
+}
+
+// Track metadata
+message Track {
+  string id = 1;                // internal UUID
+  string title = 2;
+  string artist = 3;
+  repeated string genres = 4;   // optional
+  float duration = 5;           // in seconds
+}
+
+// === Requests ===
+
+// Identify a song from audio
+message IdentifySongRequest {
+  AudioChunk audio = 1;
+}
+
+message IdentifySongResponse {
+  Track track = 1;
+  float confidence = 2;         // 0.0 → 1.0
+}
+
+// Add new fingerprints to DB
+message AddFingerprintRequest {
+  Track metadata = 1;
+  AudioChunk audio = 2;         // full reference audio
+}
+
+message AddFingerprintResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Retrieve full track info
+message GetTrackInfoRequest {
+  string id = 1;
+}
+
+message GetTrackInfoResponse {
+  Track track = 1;
+}
+
+// === Service ===
+
+service TrackHunterService {
+  rpc IdentifySong(IdentifySongRequest) returns (IdentifySongResponse);
+  rpc AddFingerprint(AddFingerprintRequest) returns (AddFingerprintResponse);
+  rpc GetTrackInfo(GetTrackInfoRequest) returns (GetTrackInfoResponse);
+}
